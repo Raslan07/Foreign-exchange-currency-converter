@@ -1,0 +1,45 @@
+@import url('/src/index.css');
+
+
+.livePreview{
+    background-color: var(--color-lime);
+    color: black;
+    padding: 0.8em 1.7em ;
+    flex-shrink:  0;
+    position: absolute;
+    left: 0;
+    z-index: 1000;
+}
+.slider{
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+    position: relative;
+    width: 90%;
+}
+
+.slides{
+    display: flex;
+    width: 100%;
+    will-change: transform;
+    /* animation: scroll 10s linear infinite ; */
+    width: max-content;
+}
+
+@keyframes scroll {
+    to{
+        transform: translateX(-50%);
+    }
+}
+
+.slider:hover .slides{
+    animation-play-state: paused ;
+}
+.slide{
+    background-color: var(--color-neutral-800);
+    padding: 0.8em ;
+    flex-shrink:  0;
+    border-right: 1px solid  rgb(71, 71, 71) ;
+}
