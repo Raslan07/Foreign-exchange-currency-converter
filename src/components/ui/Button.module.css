@@ -1,0 +1,28 @@
+@import url('/src/index.css');
+
+
+  /* Base Button Styles */
+.button{
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-full);
+    padding: var(--spacing-2) var(--spacing-4);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    background-color: var(--color-lime-500);
+}
+
+.primary{
+
+} 
+.secondary{
+
+}  
+.tab{
+
+} 
+.timeToggle{
+
+}
