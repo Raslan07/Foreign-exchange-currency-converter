@@ -6,7 +6,7 @@ const buttonVariants = {
     tab: styles.tab,
     timeToggle: styles.timeToggle,
 }
-const ButtonBoolen = {
+const _ButtonBoolen = {
     isActive : true
 }
 
