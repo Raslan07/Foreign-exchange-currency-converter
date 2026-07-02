@@ -1,7 +1,7 @@
 import styles from './Button.module.css';
 
 const buttonVariants = {
-    primary: styles.primary,
+    primary: styles.primary, 
     secondary: styles.secondary,
     tab: styles.tab,
     timeToggle: styles.timeToggle,
