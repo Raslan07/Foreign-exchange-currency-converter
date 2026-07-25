@@ -1,0 +1,80 @@
+@import url("/src/index.css");
+
+.currencyCon {
+  width: 70%;
+  display: grid;
+  margin: 5rem auto;
+  padding: 1rem 1.5rem;
+}
+h3 {
+  font-size: 1.5rem;
+}
+
+.converterField {
+  background-color: var(--color-neutral-800);
+  width: 100%;
+  padding: 1rem 1.5rem;
+  margin-block: 15px;
+  border-radius: 10px;
+}
+
+.sendField {
+  background-color: var(--color-neutral-700);
+  border-radius: inherit;
+  padding: inherit;
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+
+
+
+.sectionTitle {
+  /* Title styles */
+}
+
+.converterBox {
+  /* Main dark background container */
+}
+
+.converterInputs {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.inputGroup {
+  flex: 1;
+}
+
+.inputWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.btn {
+  /* Shared button styles */
+}
+
+.btnFavorited {
+  /* Style for favorited button */
+}
+
+.btnLog {
+  /* Style for log conversion button */
+}
+
+.tabsNav {
+  /* Tabs container */
+}
+
+.tabsList {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+.active {
+  /* Style for active tab link */
+}
