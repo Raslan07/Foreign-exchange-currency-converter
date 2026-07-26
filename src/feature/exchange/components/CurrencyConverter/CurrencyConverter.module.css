@@ -8,35 +8,50 @@
 }
 h3 {
   font-size: 1.5rem;
+  color: var(--color-text-secondary);
+
 }
 
 .converterField {
   background-color: var(--color-neutral-800);
   width: 100%;
-  padding: 1rem 1.5rem;
+  padding: 1rem 1rem;
   margin-block: 15px;
-  border-radius: 10px;
+  border-radius: 18px;
+  
 }
-
-.sendField {
-  background-color: var(--color-neutral-700);
-  border-radius: inherit;
-  padding: inherit;
+.sendField{
   display: flex;
   gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 0.65rem;
+  width: 100%;
+  
+  
+}
+
+.inputGroup {
+  background-color: var(--color-neutral-700);
+  border-radius: 0.75em;
+  padding: 2rem 1rem;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
   justify-content: space-between;
 }
 
-
-
-
-.sectionTitle {
-  /* Title styles */
+.label{
+  color: var(--color-text-secondary);
 }
 
-.converterBox {
-  /* Main dark background container */
+.splittedLine{
+  width: 100%;
+  border: 1px dotted rgb(55, 55, 55);
+  
+  overflow: hidden;
 }
+
 
 .converterInputs {
   display: flex;
@@ -46,35 +61,94 @@ h3 {
 
 .inputGroup {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1.2rem;
 }
 
 .inputWrapper {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  
+}
+.inputWrapper .input{
+  background-color: transparent;
+  border: none;
+  font-size: 2.2rem;
+  width: inherit;
+  color: white;
 }
 
-.btn {
-  /* Shared button styles */
+input:focus{
+  border: none;
+  outline: none;
 }
-
-.btnFavorited {
-  /* Style for favorited button */
-}
-
-.btnLog {
-  /* Style for log conversion button */
-}
-
-.tabsNav {
-  /* Tabs container */
-}
-
-.tabsList {
+.currencySelect{
   display: flex;
-  list-style: none;
-  padding: 0;
+  align-items: center;
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.133);
+  color: white;
+  gap: 10px;
+  background-color: var(--color-neutral-600);
+  transition :  background 0.5s;
+}
+.currencySelect:hover , .swapBtn:hover{
+  background-color: var(--color-neutral-700);
 }
 
-.active {
-  /* Style for active tab link */
+.swapBtn {
+  /* Shared button styles */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 1rem;
+  width: 45px;
+  height: 45px;
+  border: 1px solid rgba(255, 255, 255, 0.133);
+  border-radius: 8px;
+  background-color: var(--color-neutral-600);
+  color: white;
+  transition :  background 0.5s;  
+  font-size: 1.25rem;
+}
+
+
+.converterFooter{
+  display: flex;
+  justify-content: space-between;
+  padding: 0.55rem 0.75rem;
+  align-items: center;
+}
+.rateInfo{
+  color: var(--color-neutral-200);
+  font-size: 0.85rem;
+}
+.btnFavorited{
+  background-color: var();
+  border: none;
+  padding: 0.35rem 0.6rem;
+  border-radius: 8px;
+  background-color: var(--color-lime-500);
+  transition: background .5s;
+}
+.btnLog{
+  padding: 0.35rem 0.6rem;
+  border: 1px solid greenyellow;
+  background-color: var(--color-neutral-800);
+  border-radius: 8px;
+  color: white;
+}
+
+.actionButtons{
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.btnFavorited:hover{
+  background-color: rgb(150, 189, 43);
 }
