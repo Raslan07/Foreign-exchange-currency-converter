@@ -3,7 +3,7 @@
 .currencyCon {
   width: 70%;
   display: grid;
-  margin: 5rem auto;
+  margin: 3rem auto 1rem auto;
   padding: 1rem 1.5rem;
 }
 h3 {
@@ -16,7 +16,7 @@ h3 {
   background-color: var(--color-neutral-800);
   width: 100%;
   padding: 1rem 1rem;
-  margin-block: 15px;
+  margin-block-start: 15px;
   border-radius: 18px;
   
 }
