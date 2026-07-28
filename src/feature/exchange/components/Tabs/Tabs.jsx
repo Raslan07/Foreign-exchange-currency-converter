@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import styles from './ExchangeHistory.module.css'
-// import ExchangeHistory from './exhangeHistory/ExchangeHistory'
+import styles from './Tabs.module.css'
+import ExchangeHistory from './exhangeHistory/ExchangeHistory'
 // import ComparePage from './comparePage/ComparePage'
 // import FavoritesPage from './favoritesPage/FavoritesPage'
 // import LogPage from './LogPage/LogPage'
@@ -23,7 +23,8 @@ export default function Tabs({ activeTab, onTabChange }) {
       onTabChange(tabId);
     }
   };
-  return (
+    return (
+    <>
     <nav className={styles.tabsContainer}>
       <ul className={styles.tabsList}>
         {tabs.map((tab) => {
@@ -49,6 +50,9 @@ export default function Tabs({ activeTab, onTabChange }) {
         })}
       </ul>
       
-    </nav>
+            </nav>
+
+            {selectedTab && <ExchangeHistory/> }
+    </>
   )
 }

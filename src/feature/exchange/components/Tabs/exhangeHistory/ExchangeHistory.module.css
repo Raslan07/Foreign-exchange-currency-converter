@@ -87,3 +87,16 @@
   color: #ffffff;
   font-weight: 700;
 }
+
+
+.parentContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.historyBar{
+  display: flex;
+  justify-content: space-between;
+  width:  100%;
+}
