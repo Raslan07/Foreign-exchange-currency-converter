@@ -8,9 +8,10 @@ export default function App() {
     <main>
       <Header />
       <Sliderate />
-      <CurrencyConverter />
-      <Tabs/>
-      
+      <section>
+        <CurrencyConverter />
+        <Tabs/>
+      </section>
     </main>
   );
 }

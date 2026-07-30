@@ -1,7 +1,7 @@
 
 import StatCard from './StatCard'
 import TimeRangeSelector from './TimeRangeSelector'
-import ExchangeChart from './ExchangeChart'
+import RateChart from './RateChart'
 import styles from './ExchangeHistory.module.css'
 export default function ExchangeHistory() {
   return (
@@ -11,7 +11,7 @@ export default function ExchangeHistory() {
             <StatCard />
             <TimeRangeSelector/>
       </div>
-            <ExchangeChart/>
+            <RateChart/>
     </div>
   )
 }
