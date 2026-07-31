@@ -9,7 +9,6 @@
 h3 {
   font-size: 1.5rem;
   color: var(--color-text-secondary);
-
 }
 
 .converterField {
@@ -18,17 +17,14 @@ h3 {
   padding: 1rem 1rem;
   margin-block-start: 15px;
   border-radius: 18px;
-  
 }
-.sendField{
+.sendField {
   display: flex;
   gap: 20px;
   align-items: center;
   justify-content: space-between;
   padding: 0.75rem 0.65rem;
   width: 100%;
-  
-  
 }
 
 .inputGroup {
@@ -41,17 +37,16 @@ h3 {
   justify-content: space-between;
 }
 
-.label{
+.label {
   color: var(--color-text-secondary);
 }
 
-.splittedLine{
+.splittedLine {
   width: 100%;
   border: 1px dotted rgb(55, 55, 55);
-  
+
   overflow: hidden;
 }
-
 
 .converterInputs {
   display: flex;
@@ -71,9 +66,8 @@ h3 {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  
 }
-.inputWrapper .input{
+.inputWrapper .input {
   background-color: transparent;
   border: none;
   font-size: 2.2rem;
@@ -81,11 +75,11 @@ h3 {
   color: white;
 }
 
-input:focus{
+input:focus {
   border: none;
   outline: none;
 }
-.currencySelect{
+.currencySelect {
   display: flex;
   align-items: center;
   padding: 0.5rem 1.2rem;
@@ -94,9 +88,10 @@ input:focus{
   color: white;
   gap: 10px;
   background-color: var(--color-neutral-600);
-  transition :  background 0.5s;
+  transition: background 0.5s;
 }
-.currencySelect:hover , .swapBtn:hover{
+.currencySelect:hover,
+.swapBtn:hover {
   background-color: var(--color-neutral-700);
 }
 
@@ -112,30 +107,28 @@ input:focus{
   border-radius: 8px;
   background-color: var(--color-neutral-600);
   color: white;
-  transition :  background 0.5s;  
+  transition: background 0.5s;
   font-size: 1.25rem;
 }
 
-
-.converterFooter{
+.converterFooter {
   display: flex;
   justify-content: space-between;
   padding: 0.55rem 0.75rem;
   align-items: center;
 }
-.rateInfo{
+.rateInfo {
   color: var(--color-neutral-200);
   font-size: 0.85rem;
 }
-.btnFavorited{
-  background-color: var();
+.btnFavorited {
   border: none;
   padding: 0.35rem 0.6rem;
   border-radius: 8px;
   background-color: var(--color-lime-500);
-  transition: background .5s;
+  transition: background 0.5s;
 }
-.btnLog{
+.btnLog {
   padding: 0.35rem 0.6rem;
   border: 1px solid greenyellow;
   background-color: var(--color-neutral-800);
@@ -143,12 +136,12 @@ input:focus{
   color: white;
 }
 
-.actionButtons{
+.actionButtons {
   display: flex;
   justify-content: space-between;
   gap: 10px;
 }
 
-.btnFavorited:hover{
+.btnFavorited:hover {
   background-color: rgb(150, 189, 43);
 }

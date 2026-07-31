@@ -1,7 +1,7 @@
 import Header from "./components/layout/Header/Header";
 import Sliderate from "./components/layout/Silderate/Silderate;";
 import CurrencyConverter from "./feature/exchange/components/CurrencyConverter/CurrencyConverter";
-import Tabs from './feature/exchange/components/Tabs/Tabs'
+import ExchangeViews from './feature/exchange/components/Tabs/ExchangeViews';
 
 export default function App() {
   return (
@@ -10,7 +10,7 @@ export default function App() {
       <Sliderate />
       <section>
         <CurrencyConverter />
-        <Tabs/>
+        <ExchangeViews />
       </section>
     </main>
   );

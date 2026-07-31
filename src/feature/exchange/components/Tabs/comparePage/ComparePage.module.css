@@ -1,0 +1,13 @@
+.page {
+  width: 70%;
+  margin: 1rem auto;
+  color: white;
+}
+
+.title {
+  margin-bottom: 0.75rem;
+}
+
+.text {
+  color: #a1a6b0;
+}
