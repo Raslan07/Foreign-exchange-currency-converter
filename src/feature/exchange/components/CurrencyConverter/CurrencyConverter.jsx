@@ -1,6 +1,9 @@
+import { useState } from "react";
 import styles from "./CurrencyConverter.module.css";
 
 export default function CurrencyConverter() {
+  const [sendAmount, setSendAmount] = useState("1,000");
+  const [receiveAmount, setReceiveAmount] = useState("853.02");
   return (
     <section className={styles.currencyCon}>
       <h3>CHECK THE RATE</h3>
@@ -13,7 +16,8 @@ export default function CurrencyConverter() {
               <input 
                 type="text" 
                 id="send-amount" 
-                defaultValue="1,000" 
+                value={sendAmount}
+                onChange={(e) => setSendAmount(e.target.value)}
                 className={styles.input}
               />
               <button type="button" className={styles.currencySelect}>
@@ -36,8 +40,8 @@ export default function CurrencyConverter() {
               <input 
                 type="text" 
                 id="receive-amount" 
-                defaultValue="853.02" 
-                readOnly 
+                value={receiveAmount}
+                onChange={(e) => setReceiveAmount(e.target.value)}
                 className={styles.input}
               />
               <button type="button" className={styles.currencySelect}>
