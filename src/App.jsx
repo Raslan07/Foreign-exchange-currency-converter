@@ -8,7 +8,7 @@ export default function App() {
     <main>
       <Header />
       <Sliderate />
-      <section>
+      <section className="app-shell">
         <CurrencyConverter />
         <ExchangeViews />
       </section>
