@@ -50,7 +50,7 @@
 /* Active tab style with glowing neon line underneath */
 .tabButton.active {
   color: #ffffff;
-  border-bottom-color: #ccff00;
+  border-bottom-color: var(--color-lime-500);
   padding-bottom: 10px;
 }
 
@@ -68,6 +68,6 @@
 
 /* Highlight badge when active */
 .activeBadge {
-  background-color: rgba(204, 255, 0, 0.15);
-  color: #ccff00;
+  background-color: rgba(211, 247, 57, 0.15); /* var(--color-lime-500) at 15% opacity */
+  color: var(--color-lime-500);
 }

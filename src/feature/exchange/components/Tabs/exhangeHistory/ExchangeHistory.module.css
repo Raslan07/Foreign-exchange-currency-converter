@@ -49,7 +49,7 @@
 
 /* Green highlight for positive changes */
 .positiveValue {
-  color: #33ff66;
+  color: var(--color-lime-500);
 }
 
 /* Timeframe Filter Button Group */

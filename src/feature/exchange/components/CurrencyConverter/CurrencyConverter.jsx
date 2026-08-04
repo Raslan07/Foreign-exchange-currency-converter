@@ -206,6 +206,72 @@ export default function CurrencyConverter() {
     setReceiveCurrency(sendCurrency);
   };
 
+  const renderPopover = (target) => {
+    if (pickerTarget !== target) return null;
+    return (
+      <div className={styles.currencyPopover} ref={pickerRef}>
+        <div className={styles.popoverHeader}>
+          <input
+            type="search"
+            value={searchValue}
+            onChange={(event) => setSearchValue(event.target.value)}
+            placeholder="Search currencies"
+            className={styles.searchInput}
+            aria-label="Search currencies"
+          />
+        </div>
+
+        <div className={styles.currencyGroup}>
+          <h4 className={styles.groupTitle}>Popular</h4>
+          <ul className={styles.currencyList}>
+            {popularCurrencies.map(([code, name]) => (
+              <li key={code}>
+                <button
+                  type="button"
+                  className={styles.currencyOption}
+                  onClick={() => handlePickerSelect(code)}
+                >
+                  <span className={styles.currencyOptionMain}>
+                    <img className={styles.flagImage} src={getFlagSrc(code)} alt={name} />
+                    <span className={styles.currencyCode}>{code}</span>
+                    <span className={styles.currencyName}>{name}</span>
+                  </span>
+                  {code === (pickerTarget === "send" ? sendCurrency : receiveCurrency) && (
+                    <span className={styles.selectedMark}>✓</span>
+                  )}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className={styles.currencyGroup}>
+          <h4 className={styles.groupTitle}>Other currencies</h4>
+          <ul className={styles.currencyList}>
+            {otherCurrencies.map(([code, name]) => (
+              <li key={code}>
+                <button
+                  type="button"
+                  className={styles.currencyOption}
+                  onClick={() => handlePickerSelect(code)}
+                >
+                  <span className={styles.currencyOptionMain}>
+                    <img className={styles.flagImage} src={getFlagSrc(code)} alt={name} />
+                    <span className={styles.currencyCode}>{code}</span>
+                    <span className={styles.currencyName}>{name}</span>
+                  </span>
+                  {code === (pickerTarget === "send" ? sendCurrency : receiveCurrency) && (
+                    <span className={styles.selectedMark}>✓</span>
+                  )}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <section className={styles.currencyCon}>
       <h3>CHECK THE RATE</h3>
@@ -239,6 +305,7 @@ export default function CurrencyConverter() {
                 <span className={styles.dropdownArrow}>▼</span>
               </button>
             </div>
+            {renderPopover("send")}
           </div>
 
           <button type="button" className={styles.swapBtn} onClick={handleSwap} aria-label="Swap currencies">
@@ -253,7 +320,7 @@ export default function CurrencyConverter() {
                 type="text"
                 id="receive-amount"
                 value={formatAmount(calculatedReceive)}
-                className={styles.input}
+                className={`${styles.input} ${styles.receiveInput}`}
                 readOnly
               />
               <button
@@ -268,71 +335,9 @@ export default function CurrencyConverter() {
                 <span className={styles.dropdownArrow}>▼</span>
               </button>
             </div>
+            {renderPopover("receive")}
           </div>
         </div>
-
-        {pickerTarget && (
-          <div className={styles.currencyPopover} ref={pickerRef}>
-            <div className={styles.popoverHeader}>
-              <input
-                type="search"
-                value={searchValue}
-                onChange={(event) => setSearchValue(event.target.value)}
-                placeholder="Search currencies"
-                className={styles.searchInput}
-                aria-label="Search currencies"
-              />
-            </div>
-
-            <div className={styles.currencyGroup}>
-              <h4 className={styles.groupTitle}>Popular</h4>
-              <ul className={styles.currencyList}>
-                {popularCurrencies.map(([code, name]) => (
-                  <li key={code}>
-                    <button
-                      type="button"
-                      className={styles.currencyOption}
-                      onClick={() => handlePickerSelect(code)}
-                    >
-                      <span className={styles.currencyOptionMain}>
-                        <img className={styles.flagImage} src={getFlagSrc(code)} alt={name} />
-                        <span className={styles.currencyCode}>{code}</span>
-                        <span className={styles.currencyName}>{name}</span>
-                      </span>
-                      {code === (pickerTarget === "send" ? sendCurrency : receiveCurrency) && (
-                        <span className={styles.selectedMark}>✓</span>
-                      )}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className={styles.currencyGroup}>
-              <h4 className={styles.groupTitle}>Other currencies</h4>
-              <ul className={styles.currencyList}>
-                {otherCurrencies.map(([code, name]) => (
-                  <li key={code}>
-                    <button
-                      type="button"
-                      className={styles.currencyOption}
-                      onClick={() => handlePickerSelect(code)}
-                    >
-                      <span className={styles.currencyOptionMain}>
-                        <img className={styles.flagImage} src={getFlagSrc(code)} alt={name} />
-                        <span className={styles.currencyCode}>{code}</span>
-                        <span className={styles.currencyName}>{name}</span>
-                      </span>
-                      {code === (pickerTarget === "send" ? sendCurrency : receiveCurrency) && (
-                        <span className={styles.selectedMark}>✓</span>
-                      )}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        )}
 
         <div className={styles.splittedLine}></div>
 

@@ -43,11 +43,10 @@ export default function RateChart() {
             data={chartData}
             margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
           >
-            {/* Gradient definition for filled glow */}
             <defs>
               <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#ccff00" stopOpacity={0.4} />
-                <stop offset="70%" stopColor="#ccff00" stopOpacity={0.0} />
+                <stop offset="0%" stopColor="var(--color-lime-500)" stopOpacity={0.4} />
+                <stop offset="70%" stopColor="var(--color-lime-500)" stopOpacity={0.0} />
               </linearGradient>
             </defs>
 
@@ -82,7 +81,7 @@ export default function RateChart() {
             <Area
               type="monotone"
               dataKey="value"
-              stroke="#ccff00"
+              stroke="var(--color-lime-500)"
               strokeWidth={2}
               fillOpacity={1}
               fill="url(#chartGradient)"

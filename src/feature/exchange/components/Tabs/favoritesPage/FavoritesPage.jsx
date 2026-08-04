@@ -6,7 +6,7 @@ export default function FavoritesPage({ favorites = [] }) {
       {favorites.length === 0 ? (
         <>
           <h2 className={styles.title}>No pinned pairs yet</h2>
-          <p className={styles.text}>Pin a pair to track its rate here. Tap the star icon on any conversion or comparison row.</p>
+          <h3 className={styles.text}>Pin a pair to track its rate here. Tap the star icon on any conversion or comparison row.</h3>
         </>
       ) : (
         <ul className={styles.list}>
