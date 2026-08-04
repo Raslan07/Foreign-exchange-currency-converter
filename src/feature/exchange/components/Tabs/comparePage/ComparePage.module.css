@@ -1,13 +1,30 @@
 .page {
-  width: 70%;
-  margin: 1rem auto;
+  width: 100%;
+  min-height: 260px;
+  margin: 0 auto;
   color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  border: 1px solid rgba(70, 180, 255, 0.32);
+  box-sizing: border-box;
 }
 
 .title {
-  margin-bottom: 0.75rem;
+  margin: 0 0 1rem;
+  color: #e7ebf4;
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-align: center;
 }
 
 .text {
-  color: #a1a6b0;
+  margin: 0;
+  color: #8d93a1;
+  text-align: center;
+  max-width: 620px;
+  line-height: 1.6;
+  font-size: 0.9rem;
 }
