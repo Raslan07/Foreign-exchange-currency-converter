@@ -6,9 +6,6 @@ const buttonVariants = {
   tab: styles.tab,
   timeToggle: styles.timeToggle,
 };
-const _ButtonBoolen = {
-  isActive: true,
-};
 
 export default function Button({ children, variant = "primary" }) {
   return (
