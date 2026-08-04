@@ -25,8 +25,8 @@ function resolveView(activeTab, favorites, logEntries) {
 
 export default function ExchangeViews() {
   const [activeTab, setActiveTab] = useState('history');
-  const [favorites, setFavorites] = useState(() => readStoredList(FAVORITES_KEY, []));
-  const [logEntries, setLogEntries] = useState(() => readStoredList(LOG_KEY, []));
+  const [favorites] = useState(() => readStoredList(FAVORITES_KEY, []));
+  const [logEntries] = useState(() => readStoredList(LOG_KEY, []));
 
   useEffect(() => {
     writeStoredList(FAVORITES_KEY, favorites);
