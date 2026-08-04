@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getRate } from "../services/currencyApi";
+import { getRate } from "../feature/exchange/components/services/apiCurrency";
 
 export function useRate(base, quote) {
   const [data, setData] = useState(null);
