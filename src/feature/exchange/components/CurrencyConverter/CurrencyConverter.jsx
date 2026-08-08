@@ -53,21 +53,26 @@ const FLAG_OVERRIDES = {
   KES: "ke",
   GHS: "gh",
 };
+
+// This uses Vite's import.meta.glob to eagerly import all .webp files in the /src/assets directory and create a mapping of file paths to their default exports (the image URLs). This allows the application to dynamically retrieve flag images based on currency codes.
 const FLAG_SOURCES = import.meta.glob("/src/assets/*.webp", {
   eager: true,
   import: "default",
 });
 
+// Utility function to format amounts with up to 4 decimal places
 const formatAmount = (value) =>
   new Intl.NumberFormat("en-US", {
     maximumFractionDigits: 4,
   }).format(value);
 
+// Utility function to format amounts for display with no decimal places
 const formatDisplayAmount = (value) =>
   new Intl.NumberFormat("en-US", {
     maximumFractionDigits: 0,
   }).format(value);
 
+// Utility function to retrieve the source URL for a currency flag image
 const getFlagSrc = (code) => {
   const normalizedCode = FLAG_OVERRIDES[code] ?? code.slice(0, 2).toLowerCase();
   const assetUrl = FLAG_SOURCES[`/src/assets/${normalizedCode}.webp`];
@@ -86,6 +91,9 @@ export default function CurrencyConverter() {
   const [rateError, setRateError] = useState(null);
   const pickerRef = useRef(null);
 
+
+  // Memoized list of currency entries for efficient rendering and searching 
+  // Each entry is an array containing the currency code and its corresponding name
   const currencyEntries = useMemo(
     () =>
       Object.entries(currencyList).map(([code, details]) => [
