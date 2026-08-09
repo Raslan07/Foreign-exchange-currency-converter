@@ -103,10 +103,12 @@ export default function CurrencyConverter() {
     [currencyList],
   );
 
+  // Effect to load the list of currencies from the API when the component mounts
   useEffect(() => {
     async function loadCurrencies() {
       try {
         const allCurrencies = await getCurrencies();
+        // Normalize the currency data to ensure each entry has a name, defaulting to the code if no name is provided
         const normalizedCurrencies = Object.fromEntries(
           Object.entries(allCurrencies).map(([code, details]) => [
             code,
@@ -132,8 +134,13 @@ export default function CurrencyConverter() {
     loadCurrencies();
   }, []);
 
+
+  // Effect to handle clicks outside the currency picker popover to close it when clicking elsewhere on the page
+
   useEffect(() => {
+    // Event handler to close the currency picker when clicking outside of it
     function handlePointerDown(event) {
+      // Check if the click is outside the picker popover
       if (pickerRef.current && !pickerRef.current.contains(event.target)) {
         setPickerTarget(null);
       }
@@ -144,6 +151,7 @@ export default function CurrencyConverter() {
     return () => window.removeEventListener("mousedown", handlePointerDown);
   }, []);
 
+  // Effect to fetch the exchange rate whenever the send or receive currency changes
   useEffect(() => {
     async function fetchRate() {
       try {
@@ -160,6 +168,8 @@ export default function CurrencyConverter() {
     }
   }, [sendCurrency, receiveCurrency]);
 
+
+  // Memoized matcher to filter the list of currencies based on the search input value
   const matcher = useMemo(() => {
     const value = searchValue.trim().toLowerCase();
 
@@ -170,15 +180,22 @@ export default function CurrencyConverter() {
     });
   }, [currencyEntries, searchValue]);
 
+
+
+
+// Memoized lists of popular and other currencies for rendering in the currency picker popover
   const popularCurrencies = useMemo(
     () => matcher.filter(([code]) => POPULAR_CURRENCIES.includes(code)),
     [matcher],
   );
+
+  // Memoized list of other currencies that are not in the popular currencies list, for rendering in the currency picker popover
   const otherCurrencies = useMemo(
     () => matcher.filter(([code]) => !POPULAR_CURRENCIES.includes(code)),
     [matcher],
   );
 
+  // Calculate the exchange rate and the amount to be received based on the send amount and the fetched rate
   const rate = Number(rateData?.rates?.[receiveCurrency] ?? 0);
 
   const calculatedReceive = Number.isFinite(sendAmount) && rate
@@ -196,6 +213,7 @@ export default function CurrencyConverter() {
 
   const closePicker = () => setPickerTarget(null);
 
+  // Handler for selecting a currency from the picker popover, updating the corresponding state and closing the picker
   const handlePickerSelect = (code) => {
     if (pickerTarget === "send") {
       setSendCurrency(code);
@@ -209,6 +227,8 @@ export default function CurrencyConverter() {
     setSearchValue("");
   };
 
+  
+  // Handler for swapping the send and receive currencies, updating the corresponding state values
   const handleSwap = () => {
     setSendCurrency(receiveCurrency);
     setReceiveCurrency(sendCurrency);
