@@ -314,7 +314,9 @@ export default function CurrencyConverter() {
                 id="send-amount" 
                 value={formatDisplayAmount(sendAmount)}
                 onChange={(event) => {
+                  // Remove any non-digit characters from the input value to ensure only numeric input is processed
                   const digitsOnly = event.target.value.replace(/[^\d]/g, "");
+                  // Parse the cleaned numeric string to an integer, defaulting to 0 if the input is empty
                   const nextValue = digitsOnly ? Number.parseInt(digitsOnly, 10) : 0;
 
                   setSendAmount(nextValue);
@@ -336,6 +338,7 @@ export default function CurrencyConverter() {
             {renderPopover("send")}
           </div>
 
+          {/* Render the swap button between the send and receive input groups, allowing users to quickly switch the send and receive currencies */}
           <button type="button" className={styles.swapBtn} onClick={handleSwap} aria-label="Swap currencies">
             ⇄
           </button>
