@@ -80,10 +80,14 @@ const getFlagSrc = (code) => {
   return assetUrl ?? FLAG_SOURCES["/src/assets/us.webp"];
 };
 
-export default function CurrencyConverter() {
-  const [sendCurrency, setSendCurrency] = useState("USD");
-  const [receiveCurrency, setReceiveCurrency] = useState("EUR");
-  const [sendAmount, setSendAmount] = useState(1000);
+export default function CurrencyConverter({
+  sendCurrency,
+  receiveCurrency,
+  setSendCurrency,
+  setReceiveCurrency,
+  sendAmount,
+  setSendAmount,
+}) {
   const [currencyList, setCurrencyList] = useState({});
   const [searchValue, setSearchValue] = useState("");
   const [pickerTarget, setPickerTarget] = useState(null);
