@@ -9,7 +9,7 @@ import { readStoredList, writeStoredList } from './storage';
 const FAVORITES_KEY = 'fx-checker-favorites';
 const LOG_KEY = 'fx-checker-log';
 
-function resolveView(activeTab, favorites, logEntries) {
+function resolveView(activeTab, favorites, logEntries, sendCurrency, receiveCurrency) {
   switch (activeTab) {
     case 'compare':
       return <ComparePage />;
@@ -19,11 +19,11 @@ function resolveView(activeTab, favorites, logEntries) {
       return <LogPage logEntries={logEntries} />;
     case 'history':
     default:
-      return <ExchangeHistory />;
+      return <ExchangeHistory sendCurrency={sendCurrency} receiveCurrency={receiveCurrency} />;
   }
 }
 
-export default function ExchangeViews() {
+export default function ExchangeViews({ sendCurrency, receiveCurrency }) {
   const [activeTab, setActiveTab] = useState('history');
   const [favorites] = useState(() => readStoredList(FAVORITES_KEY, []));
   const [logEntries] = useState(() => readStoredList(LOG_KEY, []));
@@ -36,7 +36,7 @@ export default function ExchangeViews() {
     writeStoredList(LOG_KEY, logEntries);
   }, [logEntries]);
 
-  const view = resolveView(activeTab, favorites, logEntries);
+  const view = resolveView(activeTab, favorites, logEntries, sendCurrency, receiveCurrency);
 
   return (
     <>
