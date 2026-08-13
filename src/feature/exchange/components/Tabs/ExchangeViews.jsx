@@ -1,42 +1,41 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Tabs from './Tabs';
 import ExchangeHistory from './exhangeHistory/ExchangeHistory';
 import ComparePage from './comparePage/ComparePage';
 import FavoritesPage from './favoritesPage/FavoritesPage';
 import LogPage from './LogPage/LogPage';
-import { readStoredList, writeStoredList } from './storage';
 
-const FAVORITES_KEY = 'fx-checker-favorites';
-const LOG_KEY = 'fx-checker-log';
-
-function resolveView(activeTab, favorites, logEntries, sendCurrency, receiveCurrency) {
+function resolveView(activeTab, favorites, logEntries, sendCurrency, receiveCurrency, handleDeleteItem) {
   switch (activeTab) {
     case 'compare':
       return <ComparePage />;
     case 'favorites':
       return <FavoritesPage favorites={favorites} />;
     case 'log':
-      return <LogPage logEntries={logEntries} />;
+      return <LogPage logs={logEntries} onDeleteLogItem={handleDeleteItem} />;
     case 'history':
     default:
       return <ExchangeHistory sendCurrency={sendCurrency} receiveCurrency={receiveCurrency} />;
   }
 }
 
-export default function ExchangeViews({ sendCurrency, receiveCurrency }) {
+export default function ExchangeViews({
+  sendCurrency,
+  receiveCurrency,
+  logEntries = [],
+  favorites = [],
+  onDeleteLogItem,
+}) {
   const [activeTab, setActiveTab] = useState('history');
-  const [favorites] = useState(() => readStoredList(FAVORITES_KEY, []));
-  const [logEntries] = useState(() => readStoredList(LOG_KEY, []));
 
-  useEffect(() => {
-    writeStoredList(FAVORITES_KEY, favorites);
-  }, [favorites]);
-
-  useEffect(() => {
-    writeStoredList(LOG_KEY, logEntries);
-  }, [logEntries]);
-
-  const view = resolveView(activeTab, favorites, logEntries, sendCurrency, receiveCurrency);
+  const view = resolveView(
+    activeTab,
+    favorites,
+    logEntries,
+    sendCurrency,
+    receiveCurrency,
+    onDeleteLogItem,
+  );
 
   return (
     <>
