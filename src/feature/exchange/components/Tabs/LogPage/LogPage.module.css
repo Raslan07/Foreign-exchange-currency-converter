@@ -27,3 +27,167 @@
   line-height: 1.6;
   font-size: 0.9rem;
 }
+
+
+
+.card {
+  background-color: #13151b;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 24px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 1.2rem;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.title {
+  color: #f3f4f6;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.countText {
+  color: #717680;
+  font-family: monospace, monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.clearBtn {
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  color: #717680;
+  font-family: inherit;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.clearBtn:hover {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.35);
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+.clearBtn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.row {
+  background-color: #1a1d26;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 12px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: border-color 0.2s ease;
+}
+
+.row:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.leftGroup {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.timeTag {
+  color: #717680;
+  font-family: monospace, monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  min-width: 55px;
+}
+
+.pairText {
+  color: #ffffff;
+  font-family: monospace, monospace;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.arrow {
+  color: #717680;
+  margin: 0 4px;
+}
+
+.rightGroup {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.sentValue {
+  color: #a1a6b0;
+  font-family: monospace, monospace;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.receivedValue {
+  color: #ccff00;
+  font-family: monospace, monospace;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.deleteBtn {
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  color: #717680;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.deleteBtn:hover {
+  background-color: rgba(255, 59, 48, 0.15);
+  color: #ff453a;
+  border-color: rgba(255, 69, 58, 0.3);
+}
+
+.emptyState {
+  text-align: center;
+  padding: 48px 20px;
+  color: #717680;
+  font-family: monospace, monospace;
+  font-size: 0.85rem;
+}
