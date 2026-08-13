@@ -87,13 +87,41 @@ export default function CurrencyConverter({
   setReceiveCurrency,
   sendAmount,
   setSendAmount,
+  onLogConversion,
+  
 }) {
   const [currencyList, setCurrencyList] = useState({});
   const [searchValue, setSearchValue] = useState("");
   const [pickerTarget, setPickerTarget] = useState(null);
   const [rateData, setRateData] = useState(null);
   const [rateError, setRateError] = useState(null);
+  const [initialLog, setInitialLog] = useState({
+    id: Date.now(),
+    time: new Date().toLocaleString(),
+    fromCurrency: sendCurrency,
+    toCurrency: receiveCurrency,
+    sentAmount: 0,
+    receivedAmount: 0,
+  });
   const pickerRef = useRef(null);
+
+  function handleLogConversion() {
+    const receivedValue = Number.isFinite(sendAmount) && rateData?.rates?.[receiveCurrency]
+      ? sendAmount * rateData.rates[receiveCurrency]
+      : 0;
+
+    const nextLog = {
+      id: Date.now(),
+      time: new Date().toLocaleString(),
+      fromCurrency: sendCurrency,
+      toCurrency: receiveCurrency,
+      sentAmount: `${formatDisplayAmount(sendAmount)} ${sendCurrency}`,
+      receivedAmount: `${formatAmount(receivedValue)} ${receiveCurrency}`,
+    };
+
+    setInitialLog(nextLog);
+    onLogConversion?.(nextLog);
+  }
 
 
   // Memoized list of currency entries for efficient rendering and searching 
@@ -380,13 +408,13 @@ export default function CurrencyConverter({
           <span className={styles.rateInfo}>
             {rateError ? "Live rate unavailable" : activeRateLabel}
           </span>
-
+                {/* Favourited Button */}
           <div className={styles.actionButtons}>
             <button type="button" className={styles.btnFavorited}>
               <span className={styles.starIcon}>★</span> FAVORITED
             </button>
-
-            <button type="button" className={styles.btnLog}>
+                {/* Log Button */}
+            <button type="button" className={styles.btnLog} onClick={handleLogConversion}>
               LOG CONVERSION
             </button>
           </div>
