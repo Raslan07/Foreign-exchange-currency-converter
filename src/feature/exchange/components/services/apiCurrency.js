@@ -1,7 +1,5 @@
 import { fetchJson } from "./api";
 
-
-
 const API_URL = "https://api.frankfurter.dev/v1";
 
 export function getCurrencies() {

@@ -1,5 +1,4 @@
-
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import {
   ResponsiveContainer,
   AreaChart,
@@ -7,23 +6,23 @@ import {
   XAxis,
   YAxis,
   Tooltip,
-} from 'recharts';
-import { getHistoricalRates } from '../../services/apiCurrency';
-import styles from './RateChart.module.css';
+} from "recharts";
+import { getHistoricalRates } from "../../services/apiCurrency";
+import styles from "./RateChart.module.css";
 
 const TIMEFRAME_DAYS = {
-  '1D': 1,
-  '1W': 7,
-  '1M': 30,
-  '3M': 90,
-  '1Y': 365,
-  '5Y': 365 * 5,
+  "1D": 1,
+  "1W": 7,
+  "1M": 30,
+  "3M": 90,
+  "1Y": 365,
+  "5Y": 365 * 5,
 };
 
 function toIsoDate(date) {
   const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
 
   return `${year}-${month}-${day}`;
 }
@@ -32,8 +31,8 @@ function formatAxisDate(dateString) {
   const date = new Date(`${dateString}T00:00:00`);
 
   return date.toLocaleDateString(undefined, {
-    month: 'short',
-    day: 'numeric',
+    month: "short",
+    day: "numeric",
   });
 }
 
@@ -44,7 +43,7 @@ export default function RateChart({ baseCurrency, quoteCurrency, timeframe }) {
 
   useEffect(() => {
     async function fetchChartData() {
-      const days = TIMEFRAME_DAYS[timeframe] ?? TIMEFRAME_DAYS['1M'];
+      const days = TIMEFRAME_DAYS[timeframe] ?? TIMEFRAME_DAYS["1M"];
       const today = new Date();
       const start = new Date(today);
 
@@ -55,19 +54,29 @@ export default function RateChart({ baseCurrency, quoteCurrency, timeframe }) {
 
       try {
         setChartError(null);
-        const response = await getHistoricalRates(baseCurrency, quoteCurrency, from, to);
+        const response = await getHistoricalRates(
+          baseCurrency,
+          quoteCurrency,
+          from,
+          to,
+        );
         const rawRates = response?.rates ?? {};
 
         const normalized = Object.entries(rawRates)
           .map(([date, dateRate]) => {
-            const value = Number(dateRate?.[quoteCurrency] ?? dateRate?.[baseCurrency] ?? 1);
+            const value = Number(
+              dateRate?.[quoteCurrency] ?? dateRate?.[baseCurrency] ?? 1,
+            );
 
             return {
               date: formatAxisDate(date),
               value,
             };
           })
-          .sort((left, right) => new Date(left.date).getTime() - new Date(right.date).getTime());
+          .sort(
+            (left, right) =>
+              new Date(left.date).getTime() - new Date(right.date).getTime(),
+          );
 
         setChartData(normalized);
 
@@ -93,8 +102,8 @@ export default function RateChart({ baseCurrency, quoteCurrency, timeframe }) {
         <span className={styles.pairTitle}>{pairTitle}</span>
         <span className={styles.timestamp}>
           {chartError
-            ? 'History unavailable'
-            : `${latestRate ?? '--'} · ${timeframe}`}
+            ? "History unavailable"
+            : `${latestRate ?? "--"} · ${timeframe}`}
         </span>
       </div>
 
@@ -106,8 +115,16 @@ export default function RateChart({ baseCurrency, quoteCurrency, timeframe }) {
           >
             <defs>
               <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="var(--color-lime-500)" stopOpacity={0.4} />
-                <stop offset="70%" stopColor="var(--color-lime-500)" stopOpacity={0.0} />
+                <stop
+                  offset="0%"
+                  stopColor="var(--color-lime-500)"
+                  stopOpacity={0.4}
+                />
+                <stop
+                  offset="70%"
+                  stopColor="var(--color-lime-500)"
+                  stopOpacity={0.0}
+                />
               </linearGradient>
             </defs>
 
@@ -115,25 +132,25 @@ export default function RateChart({ baseCurrency, quoteCurrency, timeframe }) {
               dataKey="date"
               axisLine={false}
               tickLine={false}
-              tick={{ fill: '#525866', fontSize: 11 }}
+              tick={{ fill: "#525866", fontSize: 11 }}
               dy={10}
             />
             <YAxis
               dataKey="value"
-              domain={['auto', 'auto']}
+              domain={["auto", "auto"]}
               axisLine={false}
               tickLine={false}
-              tick={{ fill: '#525866', fontSize: 11 }}
+              tick={{ fill: "#525866", fontSize: 11 }}
               orientation="left"
             />
 
             <Tooltip
               contentStyle={{
-                backgroundColor: '#181b20',
-                borderColor: '#2e323b',
-                borderRadius: '8px',
-                color: '#fff',
-                fontSize: '12px',
+                backgroundColor: "#181b20",
+                borderColor: "#2e323b",
+                borderRadius: "8px",
+                color: "#fff",
+                fontSize: "12px",
               }}
             />
 

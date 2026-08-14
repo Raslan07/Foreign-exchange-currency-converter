@@ -2,7 +2,16 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { getCurrencies, getRate } from "../services/apiCurrency";
 import styles from "./CurrencyConverter.module.css";
 
-const POPULAR_CURRENCIES = ["USD", "EUR", "GBP", "JPY", "CAD", "AUD", "CHF", "CNY"];
+const POPULAR_CURRENCIES = [
+  "USD",
+  "EUR",
+  "GBP",
+  "JPY",
+  "CAD",
+  "AUD",
+  "CHF",
+  "CNY",
+];
 const FLAG_OVERRIDES = {
   USD: "us",
   EUR: "eu",
@@ -88,7 +97,6 @@ export default function CurrencyConverter({
   sendAmount,
   setSendAmount,
   onLogConversion,
-  
 }) {
   const [currencyList, setCurrencyList] = useState({});
   const [searchValue, setSearchValue] = useState("");
@@ -106,9 +114,10 @@ export default function CurrencyConverter({
   const pickerRef = useRef(null);
 
   function handleLogConversion() {
-    const receivedValue = Number.isFinite(sendAmount) && rateData?.rates?.[receiveCurrency]
-      ? sendAmount * rateData.rates[receiveCurrency]
-      : 0;
+    const receivedValue =
+      Number.isFinite(sendAmount) && rateData?.rates?.[receiveCurrency]
+        ? sendAmount * rateData.rates[receiveCurrency]
+        : 0;
 
     const nextLog = {
       id: Date.now(),
@@ -123,14 +132,13 @@ export default function CurrencyConverter({
     onLogConversion?.(nextLog);
   }
 
-
-  // Memoized list of currency entries for efficient rendering and searching 
+  // Memoized list of currency entries for efficient rendering and searching
   // Each entry is an array containing the currency code and its corresponding name
   const currencyEntries = useMemo(
     () =>
       Object.entries(currencyList).map(([code, details]) => [
         code,
-        typeof details === "string" ? details : details?.name ?? code,
+        typeof details === "string" ? details : (details?.name ?? code),
       ]),
     [currencyList],
   );
@@ -144,7 +152,7 @@ export default function CurrencyConverter({
         const normalizedCurrencies = Object.fromEntries(
           Object.entries(allCurrencies).map(([code, details]) => [
             code,
-            typeof details === "string" ? details : details?.name ?? code,
+            typeof details === "string" ? details : (details?.name ?? code),
           ]),
         );
 
@@ -165,7 +173,6 @@ export default function CurrencyConverter({
 
     loadCurrencies();
   }, []);
-
 
   // Effect to handle clicks outside the currency picker popover to close it when clicking elsewhere on the page
 
@@ -200,7 +207,6 @@ export default function CurrencyConverter({
     }
   }, [sendCurrency, receiveCurrency]);
 
-
   // Memoized matcher to filter the list of currencies based on the search input value
   const matcher = useMemo(() => {
     const value = searchValue.trim().toLowerCase();
@@ -208,14 +214,13 @@ export default function CurrencyConverter({
     return currencyEntries.filter(([code, name]) => {
       if (!value) return true;
 
-      return code.toLowerCase().includes(value) || name.toLowerCase().includes(value);
+      return (
+        code.toLowerCase().includes(value) || name.toLowerCase().includes(value)
+      );
     });
   }, [currencyEntries, searchValue]);
 
-
-
-
-// Memoized lists of popular and other currencies for rendering in the currency picker popover
+  // Memoized lists of popular and other currencies for rendering in the currency picker popover
   const popularCurrencies = useMemo(
     () => matcher.filter(([code]) => POPULAR_CURRENCIES.includes(code)),
     [matcher],
@@ -230,17 +235,17 @@ export default function CurrencyConverter({
   // Calculate the exchange rate and the amount to be received based on the send amount and the fetched rate
   const rate = Number(rateData?.rates?.[receiveCurrency] ?? 0);
 
-  const calculatedReceive = Number.isFinite(sendAmount) && rate
-    ? sendAmount * rate
-    : 0;
-
+  const calculatedReceive =
+    Number.isFinite(sendAmount) && rate ? sendAmount * rate : 0;
 
   const activeRateLabel = rate
     ? `1 ${sendCurrency} = ${rate.toFixed(4)} ${receiveCurrency}`
     : "Live rate unavailable";
 
   const togglePicker = (target) => {
-    setPickerTarget((currentTarget) => (currentTarget === target ? null : target));
+    setPickerTarget((currentTarget) =>
+      currentTarget === target ? null : target,
+    );
   };
 
   const closePicker = () => setPickerTarget(null);
@@ -259,7 +264,6 @@ export default function CurrencyConverter({
     setSearchValue("");
   };
 
-  
   // Handler for swapping the send and receive currencies, updating the corresponding state values
   const handleSwap = () => {
     setSendCurrency(receiveCurrency);
@@ -292,11 +296,18 @@ export default function CurrencyConverter({
                   onClick={() => handlePickerSelect(code)}
                 >
                   <span className={styles.currencyOptionMain}>
-                    <img className={styles.flagImage} src={getFlagSrc(code)} alt={name} />
+                    <img
+                      className={styles.flagImage}
+                      src={getFlagSrc(code)}
+                      alt={name}
+                    />
                     <span className={styles.currencyCode}>{code}</span>
                     <span className={styles.currencyName}>{name}</span>
                   </span>
-                  {code === (pickerTarget === "send" ? sendCurrency : receiveCurrency) && (
+                  {code ===
+                    (pickerTarget === "send"
+                      ? sendCurrency
+                      : receiveCurrency) && (
                     <span className={styles.selectedMark}>✓</span>
                   )}
                 </button>
@@ -316,11 +327,18 @@ export default function CurrencyConverter({
                   onClick={() => handlePickerSelect(code)}
                 >
                   <span className={styles.currencyOptionMain}>
-                    <img className={styles.flagImage} src={getFlagSrc(code)} alt={name} />
+                    <img
+                      className={styles.flagImage}
+                      src={getFlagSrc(code)}
+                      alt={name}
+                    />
                     <span className={styles.currencyCode}>{code}</span>
                     <span className={styles.currencyName}>{name}</span>
                   </span>
-                  {code === (pickerTarget === "send" ? sendCurrency : receiveCurrency) && (
+                  {code ===
+                    (pickerTarget === "send"
+                      ? sendCurrency
+                      : receiveCurrency) && (
                     <span className={styles.selectedMark}>✓</span>
                   )}
                 </button>
@@ -339,17 +357,21 @@ export default function CurrencyConverter({
         <div className={styles.sendField}>
           {/* Send Input Group */}
           <div className={styles.inputGroup}>
-            <label htmlFor="send-amount" className={styles.label}>SEND</label>
+            <label htmlFor="send-amount" className={styles.label}>
+              SEND
+            </label>
             <div className={styles.inputWrapper}>
-              <input 
-                type="text" 
-                id="send-amount" 
+              <input
+                type="text"
+                id="send-amount"
                 value={formatDisplayAmount(sendAmount)}
                 onChange={(event) => {
                   // Remove any non-digit characters from the input value to ensure only numeric input is processed
                   const digitsOnly = event.target.value.replace(/[^\d]/g, "");
                   // Parse the cleaned numeric string to an integer, defaulting to 0 if the input is empty
-                  const nextValue = digitsOnly ? Number.parseInt(digitsOnly, 10) : 0;
+                  const nextValue = digitsOnly
+                    ? Number.parseInt(digitsOnly, 10)
+                    : 0;
 
                   setSendAmount(nextValue);
                 }}
@@ -362,7 +384,11 @@ export default function CurrencyConverter({
                 aria-haspopup="dialog"
                 aria-expanded={pickerTarget === "send"}
               >
-                <img className={styles.flagImage} src={getFlagSrc(sendCurrency)} alt={sendCurrency} />
+                <img
+                  className={styles.flagImage}
+                  src={getFlagSrc(sendCurrency)}
+                  alt={sendCurrency}
+                />
                 <span>{sendCurrency}</span>
                 <span className={styles.dropdownArrow}>▼</span>
               </button>
@@ -371,13 +397,20 @@ export default function CurrencyConverter({
           </div>
 
           {/* Render the swap button between the send and receive input groups, allowing users to quickly switch the send and receive currencies */}
-          <button type="button" className={styles.swapBtn} onClick={handleSwap} aria-label="Swap currencies">
+          <button
+            type="button"
+            className={styles.swapBtn}
+            onClick={handleSwap}
+            aria-label="Swap currencies"
+          >
             ⇄
           </button>
 
           {/* Receive Input Group */}
           <div className={styles.inputGroup}>
-            <label htmlFor="receive-amount" className={styles.label}>RECEIVE</label>
+            <label htmlFor="receive-amount" className={styles.label}>
+              RECEIVE
+            </label>
             <div className={styles.inputWrapper}>
               <input
                 type="text"
@@ -393,7 +426,11 @@ export default function CurrencyConverter({
                 aria-haspopup="dialog"
                 aria-expanded={pickerTarget === "receive"}
               >
-                <img className={styles.flagImage} src={getFlagSrc(receiveCurrency)} alt={receiveCurrency} />
+                <img
+                  className={styles.flagImage}
+                  src={getFlagSrc(receiveCurrency)}
+                  alt={receiveCurrency}
+                />
                 <span>{receiveCurrency}</span>
                 <span className={styles.dropdownArrow}>▼</span>
               </button>
@@ -408,13 +445,17 @@ export default function CurrencyConverter({
           <span className={styles.rateInfo}>
             {rateError ? "Live rate unavailable" : activeRateLabel}
           </span>
-                {/* Favourited Button */}
+          {/* Favourited Button */}
           <div className={styles.actionButtons}>
             <button type="button" className={styles.btnFavorited}>
               <span className={styles.starIcon}>★</span> FAVORITED
             </button>
-                {/* Log Button */}
-            <button type="button" className={styles.btnLog} onClick={handleLogConversion}>
+            {/* Log Button */}
+            <button
+              type="button"
+              className={styles.btnLog}
+              onClick={handleLogConversion}
+            >
               LOG CONVERSION
             </button>
           </div>

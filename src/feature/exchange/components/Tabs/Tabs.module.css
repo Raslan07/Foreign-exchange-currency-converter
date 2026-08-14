@@ -68,6 +68,11 @@
 
 /* Highlight badge when active */
 .activeBadge {
-  background-color: rgba(211, 247, 57, 0.15); /* var(--color-lime-500) at 15% opacity */
+  background-color: rgba(
+    211,
+    247,
+    57,
+    0.15
+  ); /* var(--color-lime-500) at 15% opacity */
   color: var(--color-lime-500);
 }

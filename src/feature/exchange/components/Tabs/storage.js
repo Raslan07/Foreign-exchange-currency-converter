@@ -1,4 +1,5 @@
-const safeStorage = () => (typeof window !== 'undefined' ? window.localStorage : null);
+const safeStorage = () =>
+  typeof window !== "undefined" ? window.localStorage : null;
 
 export function readStoredList(key, fallback = []) {
   const storage = safeStorage();

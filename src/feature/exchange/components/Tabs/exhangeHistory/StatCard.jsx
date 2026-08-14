@@ -1,19 +1,14 @@
-
-import styles from './ExchangeHistory.module.css'
+import styles from "./ExchangeHistory.module.css";
 
 export default function StatCard() {
-      
-
   const stats = [
-    { label: 'OPEN', value: '0.8516', type: 'neutral' },
-    { label: 'LAST', value: '0.8530', type: 'neutral' },
-    { label: 'CHANGE', value: '+0.0014', type: 'positive' },
-    { label: '% CHANGE', value: '▲ +0.16%', type: 'positive' },
+    { label: "OPEN", value: "0.8516", type: "neutral" },
+    { label: "LAST", value: "0.8530", type: "neutral" },
+    { label: "CHANGE", value: "+0.0014", type: "positive" },
+    { label: "% CHANGE", value: "▲ +0.16%", type: "positive" },
   ];
 
- 
   return (
-
     <div className={styles.container}>
       {/* Stat Cards Grid */}
       <div className={styles.statsGrid}>
@@ -22,7 +17,7 @@ export default function StatCard() {
             <span className={styles.statLabel}>{stat.label}</span>
             <span
               className={`${styles.statValue} ${
-                stat.type === 'positive' ? styles.positiveValue : ''
+                stat.type === "positive" ? styles.positiveValue : ""
               }`}
             >
               {stat.value}
@@ -47,5 +42,5 @@ export default function StatCard() {
         ))}
       </div> */}
     </div>
-  )
+  );
 }
