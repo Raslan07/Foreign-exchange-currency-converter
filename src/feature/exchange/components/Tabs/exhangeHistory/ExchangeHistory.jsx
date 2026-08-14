@@ -1,12 +1,11 @@
-
-import { useState } from 'react'
-import StatCard from './StatCard'
-import TimeRangeSelector from './TimeRangeSelector'
-import RateChart from './RateChart'
-import styles from './ExchangeHistory.module.css'
+import { useState } from "react";
+import StatCard from "./StatCard";
+import TimeRangeSelector from "./TimeRangeSelector";
+import RateChart from "./RateChart";
+import styles from "./ExchangeHistory.module.css";
 
 export default function ExchangeHistory({ sendCurrency, receiveCurrency }) {
-  const [selectedTimeframe, setSelectedTimeframe] = useState('1M')
+  const [selectedTimeframe, setSelectedTimeframe] = useState("1M");
 
   return (
     <div className={styles.parentContainer}>
@@ -23,5 +22,5 @@ export default function ExchangeHistory({ sendCurrency, receiveCurrency }) {
         timeframe={selectedTimeframe}
       />
     </div>
-  )
+  );
 }
