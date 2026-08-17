@@ -1,29 +1,31 @@
+@import url("/src/index.css");
+
 .page {
   width: 100%;
   min-height: 260px;
   margin: 0 auto;
-  color: white;
+  color: var(--color-text-inverse);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 2rem 1rem;
+  padding: var(--spacing-8) var(--spacing-4);
   box-sizing: border-box;
 }
 
 .title {
-  margin: 0 0 1rem;
-  color: #e7ebf4;
-  font-size: 1.05rem;
-  font-weight: 700;
+  margin: 0 0 var(--spacing-4);
+  color: var(--color-text-inverse);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
   text-align: center;
 }
 
 .text {
   margin: 0;
-  color: #8d93a1;
+  color: var(--color-text-secondary);
   text-align: center;
   max-width: 620px;
-  line-height: 1.6;
-  font-size: 0.9rem;
+  line-height: var(--line-height-relaxed);
+  font-size: var(--font-size-sm);
 }
