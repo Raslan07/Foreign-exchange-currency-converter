@@ -1,55 +1,57 @@
+@import url("/src/index.css");
+
 .page {
   width: 100%;
   min-height: 260px;
   margin: 0 auto;
-  color: white;
+  color: var(--color-text-inverse);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 2rem 1rem;
+  padding: var(--spacing-8) var(--spacing-4);
   box-sizing: border-box;
 }
 
 .title {
-  margin: 0 0 1rem;
-  color: #e7ebf4;
-  font-size: 1.05rem;
-  font-weight: 700;
+  margin: 0 0 var(--spacing-4);
+  color: var(--color-text-inverse);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
   text-align: center;
 }
 
 .text {
   margin: 0;
-  color: #8d93a1;
+  color: var(--color-text-secondary);
   text-align: center;
   max-width: 620px;
-  line-height: 1.6;
-  font-size: 0.9rem;
+  line-height: var(--line-height-relaxed);
+  font-size: var(--font-size-sm);
 }
 
 .card {
-  background-color: #13151b;
+  background-color: var(--color-neutral-700);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
-  padding: 24px;
+  border-radius: var(--radius-2xl);
+  padding: var(--spacing-6);
   width: 100%;
   box-sizing: border-box;
-  margin-top: 1.2rem;
+  margin-top: var(--spacing-5);
 }
 
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: var(--spacing-5);
 }
 
 .title {
-  color: #f3f4f6;
-  font-size: 0.85rem;
-  font-weight: 800;
-  letter-spacing: 1.2px;
+  color: var(--color-text-inverse);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-extrabold);
+  letter-spacing: var(--letter-spacing-wider);
   margin: 0;
   text-transform: uppercase;
 }
@@ -57,34 +59,34 @@
 .controls {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: var(--spacing-4);
 }
 
 .countText {
-  color: #717680;
-  font-family: monospace, monospace;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.8px;
+  color: var(--color-text-tertiary);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-wide);
   text-transform: uppercase;
 }
 
 .clearBtn {
   background-color: transparent;
   border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 6px;
-  color: #717680;
+  border-radius: var(--radius-base);
+  color: var(--color-text-tertiary);
   font-family: inherit;
-  font-size: 0.65rem;
-  font-weight: 800;
-  letter-spacing: 0.8px;
-  padding: 6px 12px;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-extrabold);
+  letter-spacing: var(--letter-spacing-wide);
+  padding: var(--spacing-2) var(--spacing-3);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all var(--transition-fast);
 }
 
 .clearBtn:hover {
-  color: #ffffff;
+  color: var(--color-text-inverse);
   border-color: rgba(255, 255, 255, 0.35);
   background-color: rgba(255, 255, 255, 0.04);
 }
@@ -97,18 +99,18 @@
 .list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--spacing-3);
 }
 
 .row {
-  background-color: #1a1d26;
+  background-color: var(--color-neutral-800);
   border: 1px solid rgba(255, 255, 255, 0.04);
-  border-radius: 12px;
-  padding: 14px 18px;
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-3) var(--spacing-5);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  transition: border-color 0.2s ease;
+  transition: border-color var(--transition-fast);
 }
 
 .row:hover {
@@ -118,74 +120,74 @@
 .leftGroup {
   display: flex;
   align-items: center;
-  gap: 28px;
+  gap: var(--spacing-7);
 }
 
 .timeTag {
-  color: #717680;
-  font-family: monospace, monospace;
-  font-size: 0.75rem;
-  font-weight: 600;
+  color: var(--color-text-tertiary);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
   min-width: 55px;
 }
 
 .pairText {
-  color: #ffffff;
-  font-family: monospace, monospace;
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.5px;
+  color: var(--color-text-inverse);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-tight);
 }
 
 .arrow {
-  color: #717680;
-  margin: 0 4px;
+  color: var(--color-text-tertiary);
+  margin: 0 var(--spacing-1);
 }
 
 .rightGroup {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: var(--spacing-5);
 }
 
 .sentValue {
-  color: #a1a6b0;
-  font-family: monospace, monospace;
-  font-size: 0.95rem;
-  font-weight: 700;
+  color: var(--color-text-secondary);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
 }
 
 .receivedValue {
-  color: #ccff00;
-  font-family: monospace, monospace;
-  font-size: 0.95rem;
-  font-weight: 700;
+  color: var(--color-lime);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
 }
 
 .deleteBtn {
   background-color: transparent;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 8px;
-  color: #717680;
+  border-radius: var(--radius-md);
+  color: var(--color-text-tertiary);
   width: 32px;
   height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all var(--transition-fast);
 }
 
 .deleteBtn:hover {
   background-color: rgba(255, 59, 48, 0.15);
-  color: #ff453a;
+  color: var(--color-error);
   border-color: rgba(255, 69, 58, 0.3);
 }
 
 .emptyState {
   text-align: center;
-  padding: 48px 20px;
-  color: #717680;
-  font-family: monospace, monospace;
-  font-size: 0.85rem;
+  padding: var(--spacing-12) var(--spacing-5);
+  color: var(--color-text-tertiary);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-sm);
 }
