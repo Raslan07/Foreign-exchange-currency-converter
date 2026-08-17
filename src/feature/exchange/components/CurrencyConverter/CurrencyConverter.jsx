@@ -19,7 +19,7 @@ const FLAG_OVERRIDES = {
   JPY: "jp",
   CAD: "ca",
   AUD: "au",
-  CHF: "ch",
+  CHF: "sz",
   CNY: "cn",
   HKD: "hk",
   SGD: "sg",
