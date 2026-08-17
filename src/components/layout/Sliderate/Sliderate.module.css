@@ -2,8 +2,8 @@
 
 .livePreview {
   background-color: var(--color-lime);
-  color: black;
-  padding: 0.8em 1.7em;
+  color: var(--color-text-primary);
+  padding: var(--spacing-3) var(--spacing-4);
   flex-shrink: 0;
   position: absolute;
   left: 0;
@@ -39,11 +39,11 @@
 
 .slide {
   background-color: var(--color-neutral-800);
-  padding: 0.8em;
+  padding: var(--spacing-2);
   flex-shrink: 0;
-  border-right: 1px solid rgb(71, 71, 71);
+  border-right: 1px solid var(--color-border-dark);
   display: flex;
-  gap: 0.5rem;
+  gap: var(--spacing-2);
   align-items: center;
 }
 
@@ -52,16 +52,16 @@
 }
 
 .amount {
-  color: white;
+  color: var(--color-text-inverse);
 }
 
 .rate {
-  font-size: 0.78rem;
+  font-size: var(--font-size-xs);
 }
 
 .liveDot {
   position: absolute;
-  background-color: black;
+  background-color: var(--color-primary);
   width: 7px;
   height: 7px;
   translate: -12px 7px;
