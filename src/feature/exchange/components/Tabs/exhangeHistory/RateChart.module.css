@@ -1,11 +1,13 @@
+@import url("/src/index.css");
+
 .chartCard {
   width: 100%;
   max-width: 100%;
-  background-color: #121418;
+  background-color: var(--color-neutral-900);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
-  padding: 20px;
-  margin-top: 16px;
+  border-radius: var(--radius-2xl);
+  padding: var(--spacing-5);
+  margin-top: var(--spacing-4);
   box-sizing: border-box;
 }
 
@@ -13,8 +15,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
-  gap: 12px;
+  margin-bottom: var(--spacing-5);
+  gap: var(--spacing-3);
 }
 
 @media (max-width: 768px) {
@@ -25,18 +27,18 @@
 }
 
 .pairTitle {
-  color: #ffffff;
+  color: var(--color-text-inverse);
   font-family: inherit;
-  font-size: 1rem;
-  font-weight: 700;
-  letter-spacing: 0.5px;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-tight);
 }
 
 .timestamp {
-  color: #525866;
-  font-family: monospace, monospace;
-  font-size: 0.75rem;
-  letter-spacing: 0.5px;
+  color: var(--color-text-tertiary);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  letter-spacing: var(--letter-spacing-tight);
 }
 
 .chartContainer {
