@@ -13,7 +13,8 @@ function resolveView(
   receiveCurrency,
   handleDeleteItem,
   sendAmount,
-  compareEntries
+  compareEntries,
+  handleClearAll
 ) {
   switch (activeTab) {
     case "compare":
@@ -26,7 +27,7 @@ function resolveView(
     case "favorites":
       return <FavoritesPage favorites={favorites} />;
     case "log":
-      return <LogPage logs={logEntries} onDeleteLogItem={handleDeleteItem} />;
+      return <LogPage logs={logEntries} onDeleteLogItem={handleDeleteItem} onHandleClearAll={handleClearAll} />;
     case "history":
     default:
       return (
@@ -45,7 +46,8 @@ export default function ExchangeViews({
   favorites = [],
   compareEntries = [] ,
   onDeleteLogItem,
-  sendAmount
+  sendAmount,
+  onHandleClearAll,
 }) {
   const [activeTab, setActiveTab] = useState("history");
 
@@ -58,6 +60,7 @@ export default function ExchangeViews({
     onDeleteLogItem,
     sendAmount, 
     compareEntries,
+    onHandleClearAll,
   );
 
   return (
