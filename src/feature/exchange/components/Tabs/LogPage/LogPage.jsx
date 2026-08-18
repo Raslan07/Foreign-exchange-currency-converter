@@ -1,9 +1,14 @@
 import styles from "./LogPage.module.css";
 import EmptyLogPage from "./EmptyLogPage";
-export default function LogPage({ logs = [], onDeleteLogItem }) {
+export default function LogPage({ logs = [], onDeleteLogItem , onHandleClearAll }) {
   function handleDeleteItem(id) {
     if (onDeleteLogItem) {
       onDeleteLogItem(id);
+    }
+  }
+  function handelClearAll(logs) {
+    if (onHandleClearAll) {
+      onHandleClearAll(logs);
     }
   }
   return (
@@ -18,7 +23,7 @@ export default function LogPage({ logs = [], onDeleteLogItem }) {
               <span className={styles.countText}>{logs.length} LOGGED</span>
               <button
                 type="button"
-                // onClick={onClearAll}
+                onClick={()=> handelClearAll(logs)}
                 disabled={logs.length === 0}
                 className={styles.clearBtn}
               >
