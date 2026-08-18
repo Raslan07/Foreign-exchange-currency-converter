@@ -28,19 +28,7 @@ export default function App() {
     writeStoredList(LOG_KEY, logEntries);
   }, [logEntries]);
 
-  const handleLogConversion = (newEntry) => {
-    if (!newEntry) return;
-
-    setLogEntries((currentEntries) => [newEntry, ...currentEntries]);
-  };
-
-  const handleDeleteItem = (id) => {
-    setLogEntries((currentEntries) =>
-      currentEntries.filter((entry) => entry.id !== id),
-    );
-  };
-
-   const compareEntries = [
+  const compareEntries = [
     {
       code: "GBP",
       name: "British Pound",
@@ -58,7 +46,7 @@ export default function App() {
     {
       code: "CHF",
       name: "Swiss Franc",
-      flag:   getFlagUrl("ch"),
+      flag:   getFlagUrl("sz"),
       rate: 0.9098,
       isFav: false,
     },
@@ -87,6 +75,23 @@ export default function App() {
     },
   ]
 
+  const handleLogConversion = (newEntry) => {
+    if (!newEntry) return;
+
+    setLogEntries((currentEntries) => [newEntry, ...currentEntries]);
+  };
+
+  const handleDeleteItem = (id) => {
+    setLogEntries((currentEntries) =>
+      currentEntries.filter((entry) => entry.id !== id),
+    );
+  };
+  const handleClearAll = () => {
+    setLogEntries([]);
+  }
+
+   
+
 
   return (
     <main>
@@ -108,7 +113,8 @@ export default function App() {
           logEntries={logEntries}
           onDeleteLogItem={handleDeleteItem}
           sendAmount={sendAmount}
-          compareEntries={ compareEntries}
+          compareEntries={compareEntries}
+          onHandleClearAll={handleClearAll}
         />
       </section>
     </main>
