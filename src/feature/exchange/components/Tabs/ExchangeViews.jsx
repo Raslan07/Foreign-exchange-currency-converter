@@ -14,18 +14,21 @@ function resolveView(
   handleDeleteItem,
   sendAmount,
   compareEntries,
-  handleClearAll
+  handleClearAll,
+  onToggleFavorite
 ) {
   switch (activeTab) {
     case "compare":
       return (
         <ComparePage
           sendCurrency={sendCurrency}
-  sendAmount={sendAmount}
-  compareEntries={compareEntries} />
+          sendAmount={sendAmount}
+          compareEntries={compareEntries}
+          favorites={favorites}
+          onToggleFavorite={onToggleFavorite}      />
       );
     case "favorites":
-      return <FavoritesPage favorites={favorites} />;
+      return <FavoritesPage favorites={favorites} onToggleFavorite={onToggleFavorite} />;
     case "log":
       return <LogPage logs={logEntries} onDeleteLogItem={handleDeleteItem} onHandleClearAll={handleClearAll} />;
     case "history":
@@ -48,6 +51,8 @@ export default function ExchangeViews({
   onDeleteLogItem,
   sendAmount,
   onHandleClearAll,
+  
+  onToggleFavorite
 }) {
   const [activeTab, setActiveTab] = useState("history");
 
@@ -61,6 +66,7 @@ export default function ExchangeViews({
     sendAmount, 
     compareEntries,
     onHandleClearAll,
+    onToggleFavorite
   );
 
   return (
