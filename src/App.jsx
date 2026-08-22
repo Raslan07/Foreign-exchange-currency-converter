@@ -9,6 +9,7 @@ import {
 } from "./feature/exchange/components/Tabs/storage";
 
 const LOG_KEY = "fx-checker-log";
+const FAV_KEY = "fx-checker-favorite";
 
 // In Vite, you can dynamically resolve assets like this:
 function getFlagUrl(code) {
@@ -20,6 +21,9 @@ export default function App() {
   const [sendCurrency, setSendCurrency] = useState("USD");
   const [receiveCurrency, setReceiveCurrency] = useState("EUR");
   const [sendAmount, setSendAmount] = useState(1000);
+  const [favorites , setFavorites] = useState(() =>
+    readStoredList(FAV_KEY, []),
+  );
   const [logEntries, setLogEntries] = useState(() =>
     readStoredList(LOG_KEY, []),
   );
@@ -28,41 +32,47 @@ export default function App() {
     writeStoredList(LOG_KEY, logEntries);
   }, [logEntries]);
 
+  useEffect(() => {
+    writeStoredList(FAV_KEY, favorites);
+  }, [favorites]);
+
+
+
   const compareEntries = [
     {
       code: "GBP",
       name: "British Pound",
       flag: getFlagUrl("gb"),
       rate: 0.73665,
-      isFav: true,
+      
     },
     {
       code: "JPY",
       name: "Japanese Yen",
       flag: getFlagUrl("jp"),
       rate: 157.91,
-      isFav: true,
+      
     },
     {
       code: "CHF",
       name: "Swiss Franc",
       flag:   getFlagUrl("sz"),
       rate: 0.9098,
-      isFav: false,
+      
     },
     {
       code: "CAD",
       name: "Canadian Dollar",
       flag:  getFlagUrl("ca"),
       rate: 1.3815,
-      isFav: false,
+      
     },
     {
       code: "AUD",
       name: "Australian Dollar",
       flag: getFlagUrl("au"),
       rate: 1.38735,
-      isFav: false,
+      
     },
     { code: "INR", name: "Indian Rupee", flag: getFlagUrl("in"), rate: 94.91, isFav: true },
     { code: "CNY", name: "Chinese Yuan", flag: getFlagUrl("cn"), rate: 7.21, isFav: false },
@@ -71,7 +81,7 @@ export default function App() {
       name: "Bangladeshi Taka",
       flag: getFlagUrl("bd"),
       rate: 122.92,
-      isFav: true,
+     
     },
   ]
 
@@ -90,7 +100,20 @@ export default function App() {
     setLogEntries([]);
   }
 
-   
+  const handleToggleFavorite =(code) => {
+    setFavorites((currentEntries) => {
+       const isFavorite = currentEntries.some((entry) => entry.code === code);
+      if (isFavorite) {
+        return currentEntries.filter((entry) => entry.code !== code);
+      } else {
+        const newEntry = compareEntries.find((entry) => entry.code === code);
+        if (newEntry) {
+          return [...currentEntries, newEntry];
+        }
+      }
+      return currentEntries;
+    });
+  }
 
 
   return (
@@ -106,6 +129,8 @@ export default function App() {
           sendAmount={sendAmount}
           setSendAmount={setSendAmount}
           onLogConversion={handleLogConversion}
+          favorites={favorites}
+          onToggleFavorite={handleToggleFavorite}
         />
         <ExchangeViews
           sendCurrency={sendCurrency}
@@ -115,6 +140,8 @@ export default function App() {
           sendAmount={sendAmount}
           compareEntries={compareEntries}
           onHandleClearAll={handleClearAll}
+          favorites={favorites}
+          onToggleFavorite={handleToggleFavorite }
         />
       </section>
     </main>
