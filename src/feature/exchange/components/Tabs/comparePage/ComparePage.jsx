@@ -1,4 +1,4 @@
-import {useState} from 'react'
+
 import EmptyComparePage from "./EmptyComparePage";
 import styles from "./ComparePage.module.css";
 
@@ -7,22 +7,17 @@ export default function ComparePage({
   sendAmount ,
   sendCurrency ,
   compareEntries = [],
+  favorites = [],
+  onToggleFavorite
 }) {
-  const [pairs , setPairs] = useState(compareEntries); 
   const cleanString = String(sendAmount ?? "").replace(/,/g, "");
   const parsed = parseFloat(cleanString);
 
   const numAmount = Number.isNaN(parsed) ? 1000 : parsed;
-  const toggleFavorite = (code) => {
-    setPairs((prev) =>
-      prev.map((item) =>
-        item.code === code ? { ...item, isFav: !item.isFav } : item,
-      ),
-    );
-  };
+  
   return (
     <>
-      {pairs.length === 0 ? (
+      {compareEntries.length === 0 ? (
         <EmptyComparePage />
       ) : (
         <div className={styles.card}>
@@ -32,11 +27,12 @@ export default function ComparePage({
               <span className={styles.highlightAmount}>{sendAmount}</span> FROM{" "}
               {sendCurrency}
             </h3>
-            <span className={styles.countText}>{pairs.length} PAIRS</span>
+            <span className={styles.countText}>{compareEntries.length} PAIRS</span>
           </div>
 
           <div className={styles.list}>
-            {pairs.map((item) => {
+              {compareEntries.map((item) => {
+              const isFavorite = favorites.some((entry) => entry.code === item.code);
               const totalValue = (numAmount * item.rate).toLocaleString(
                 "en-US",
                 {
@@ -67,15 +63,16 @@ export default function ComparePage({
 
                     <button
                       type="button"
-                      onClick={() => toggleFavorite(item.code)}
-                      className={`${styles.favBtn} ${item.isFav ? styles.favActive : ""}`}
+                      aria-pressed={isFavorite}
+                      onClick={() => onToggleFavorite(item.code)}
+                      className={`${styles.favBtn} ${isFavorite ? styles.favActive : ""}`}
                       title={
-                        item.isFav
+                        isFavorite
                           ? "Remove from favorites"
                           : "Add to favorites"
                       }
                     >
-                      {item.isFav ? "★" : "☆"}
+                      {isFavorite ? "★" : "☆"}
                     </button>
                   </div>
                 </div>
